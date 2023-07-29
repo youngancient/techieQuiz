@@ -63,7 +63,7 @@ export const WelcomeStyles = styled(motion.div).attrs<ICodeStyle>(() => ({
     width: 100%;
     fill: ${(props) => props.color};
   }
-  h2 {
+  h2, h3 {
     color: #1d355d;
     font-family: Raleway;
     font-size: 2.5rem;
@@ -105,6 +105,7 @@ export const WelcomeStyles = styled(motion.div).attrs<ICodeStyle>(() => ({
   }
   .select h3 {
     font-family: Raleway;
+    font-size: 1.5rem;
   }
   .start {
     display: flex;
