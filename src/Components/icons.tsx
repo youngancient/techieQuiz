@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { ArrowStyles, EmojiStyles } from "../styles/main";
 import { useAppDispatch } from "../redux/hooks";
-import { IBgTheme, setActiveEmoji } from "../redux/dataSlice";
+import {  setActiveEmoji } from "../redux/dataSlice";
 import { IEmoji } from "../Constant/Constants";
 
 export const CorrectIcon = () => {

@@ -1,6 +1,6 @@
 import { css, styled } from "styled-components";
 import { motion } from "framer-motion";
-import { OptionVariants, compVariants } from "../Animations/Animations";
+import { compVariants } from "../Animations/Animations";
 
 export const MainStyles = styled.main`
   display: flex;

@@ -24,11 +24,9 @@ import {
 import { Timer } from "./timer";
 import {
   DropdownList,
-  EmojiList,
   IEmoji,
   IOption,
   IQuestion,
-  Questions,
 } from "../Constant/Constants";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
@@ -49,7 +47,6 @@ import {
   toggleIsQuestionAnswered,
   toggleShowQuestionList,
 } from "../redux/dataSlice";
-import ReactAudioPlayer from "react-audio-player";
 
 
 

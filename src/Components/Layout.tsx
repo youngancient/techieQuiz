@@ -4,13 +4,13 @@ import { dataSelector } from "../redux/dataSlice";
 import { useAppSelector } from "../redux/hooks";
 import ReactConfetti from "react-confetti";
 import { useWindowSize } from "usehooks-ts";
-import {Howl, Howler} from 'howler';
-import { useEffect } from "react";
+// import {Howl, Howler} from 'howler';
+// import { useEffect } from "react";
 
 // using howler omorrrrrr
 
 const Layout = () => {
-  const { bgTheme, hasEnded ,playQuizBgSound, hasStarted } = useAppSelector(dataSelector);
+  const { bgTheme, hasEnded } = useAppSelector(dataSelector);
   const { width, height } = useWindowSize();
 
   // adding howler is giving issues!
