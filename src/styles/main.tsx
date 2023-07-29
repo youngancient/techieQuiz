@@ -22,13 +22,11 @@ export const MainStyles = styled.main`
     }
   }
   @media (max-width: 767px) {
-    width: 70%;
-    max-width: 348px;
-    h1 {
-      font-size: 1.8rem;
-    }
+    width: 80%;
   }
   @media (max-width: 500px) {
+    font-size: 1.8rem;
+    max-width: 348px;
     width: 90%;
   }
   @media (max-width: 370px) {

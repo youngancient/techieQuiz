@@ -55,9 +55,7 @@ export const LayoutStyles = styled.div<IBgTheme>`
     transform: rotate(30deg);
     animation: moveTwo 1s linear;
   }
-  .audio{
-    // display: none;
-  }
+  
   ${(props) =>
     props.color &&
     css`
@@ -70,7 +68,7 @@ export const LayoutStyles = styled.div<IBgTheme>`
   .ewe{
     z-index: 10;
   }
-  @media (max-width: 767px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     gap: 1.5rem;
     .one,

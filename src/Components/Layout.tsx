@@ -38,8 +38,7 @@ const Layout = () => {
       {hasEnded && <div className="ewe"><ReactConfetti width={width} height={height} /></div>}
 
       {/* If i fix this audio issue, then I am done >>> */}
-      <div className="audio">
-      </div>
+
     </LayoutStyles>
   );
 };
