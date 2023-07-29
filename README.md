@@ -1,1 +1,1 @@
-# highQ
+# Techie Quiz
