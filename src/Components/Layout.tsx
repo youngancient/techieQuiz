@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { LayoutStyles } from "../styles/layout";
 import { Main } from "./main";
-import { dataSelector } from "../redux/dataSlice";
+import { dataSelector, setPlayCorrectAnswerSound } from "../redux/dataSlice";
 import { useAppSelector } from "../redux/hooks";
 import ReactConfetti from "react-confetti";
 import { useWindowSize } from "usehooks-ts";
 import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 /* using howler omorrrrrr, 
  guy that thing no gree work, 
@@ -17,10 +19,15 @@ i had to refer back to native HTML Audio Element :
 */
 
 const Layout = () => {
-  const { bgTheme, hasEnded, hasStarted, playQuizBgSound } =
-    useAppSelector(dataSelector);
+  const {
+    bgTheme,
+    hasEnded,
+    hasStarted,
+    playQuizBgSound,
+    playCorrectAnswerSound,
+  } = useAppSelector(dataSelector);
   const { width, height } = useWindowSize();
-
+  const dispatch = useDispatch();
   // adding howler is giving issues!
 
   /*Map out all our audion files */
@@ -39,29 +46,39 @@ const Layout = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  const correctSound = new Audio(audioFiles[1]);
+
+  const playCorrectSound = () => {
+    correctSound.load();
+    correctSound.play();
+  };
+
   useEffect(() => {
     audioRef?.current?.setAttribute("src", audioFiles[audioIndex]);
 
     /* Play the sound once the user clicks the start button */
     if (playQuizBgSound && hasStarted) {
+      setLoopSound(true);
       setAudioIndex(0);
       audioRef.current?.play();
       audioRef.current.volume = 0.7;
-      setLoopSound(true);
-      console.log(audioRef.current.volume);
     }
 
-    /* Play the IDAN sound when the game has ended */
+    /*Play the IDAN sound when the game ends*/
     if (hasEnded) {
-      /* choosing a random number so we can play random sound 
-       @see line 37
-      */
-      setAudioIndex(getRandomNumber(2, 3));
-      audioRef.current.volume = 1.0;
-      setLoopSound(false);
-      audioRef.current?.play();
+      const endSound = new Audio(audioFiles[getRandomNumber(2, 3)]);
+      endSound.play();
     }
-  }, [playQuizBgSound, hasStarted, hasEnded, audioIndex]);
+  }, [playQuizBgSound, hasStarted, hasEnded]);
+
+  useEffect(() => {
+    if (hasStarted) {
+      playCorrectSound();
+    }
+    setTimeout(() => {
+      dispatch(setPlayCorrectAnswerSound(false));
+    }, 0);
+  }, [playCorrectAnswerSound]);
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
