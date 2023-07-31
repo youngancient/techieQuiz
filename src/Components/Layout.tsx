@@ -5,31 +5,33 @@ import { dataSelector } from "../redux/dataSlice";
 import { useAppSelector } from "../redux/hooks";
 import ReactConfetti from "react-confetti";
 import { useWindowSize } from "usehooks-ts";
-// import {Howl, Howler} from 'howler';
-// import { useEffect } from "react";
+import { Howl } from "howler";
+import { useEffect } from "react";
 
-// using howler omorrrrrr guy me sef shock 
+// using howler omorrrrrr guy me sef shock
 
 const Layout = () => {
-  const { bgTheme, hasEnded } = useAppSelector(dataSelector);
+  const { bgTheme, hasEnded, hasStarted, playQuizBgSound } =
+    useAppSelector(dataSelector);
   const { width, height } = useWindowSize();
 
   // adding howler is giving issues!
-  
-  // const sound = new Howl({
-  //   src : ['/bg-sound.mp3'],
-  //   volume : 0.5
-  // });
-  // useEffect(()=>{
-  //   console.log("changed");
-  //   if(playQuizBgSound && hasStarted){
-  //     sound.play();
-  //   }
-  //   if(hasStarted && !playQuizBgSound){
-  //     console.log("i dey here");
-  //     sound.mute(true);
-  //   }
-  // },[playQuizBgSound])
+
+  const sound = new Howl({
+    src: ["/bg-sound.mp3"],
+    volume: 0.5,
+  });
+  useEffect(() => {
+    console.log("changed");
+    /*play the sound once the user clicks start button */
+    if (playQuizBgSound && hasStarted) {
+      sound.play();
+    }
+    if (hasStarted && !playQuizBgSound) {
+      console.log("i dey here");
+      sound.mute(true);
+    }
+  }, [playQuizBgSound]);
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -37,11 +39,14 @@ const Layout = () => {
       <div className="one"></div>
       <Main />
       <div className="two"></div>
-      {hasEnded && <div className="ewe"><ReactConfetti width={width} height={height} /></div>}
+      {hasEnded && (
+        <div className="ewe">
+          <ReactConfetti width={width} height={height} />
+        </div>
+      )}
 
       {/* If i fix this audio issue, then I am done,
       I would try my best to fix it :) >>> */}
-
     </LayoutStyles>
   );
 };

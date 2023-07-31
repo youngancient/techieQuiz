@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   DropdownList,
@@ -9,6 +14,7 @@ import {
 } from "../Constant/Constants";
 import { RootState } from "./store";
 import { IDropdownItem } from "../Components/main";
+import {Howl, Howler} from "howler";
 
 interface IDataSlice {
   questions: IQuestion[];
@@ -27,7 +33,8 @@ interface IDataSlice {
   hasFinishedQuestions: boolean;
   playerScore: number;
   timerState: number;
-  playQuizBgSound : boolean;
+  playQuizBgSound: boolean;
+  playQuizBgSoundInstance: Howl | any;
 }
 export interface IBgTheme {
   color?: string;
@@ -51,6 +58,7 @@ const initialState: IDataSlice = {
   playerScore: 0,
   timerState: 10,
   playQuizBgSound : false,
+  playQuizBgSoundInstance : null
 };
 
 const generateRandom = (min: number, max: number) => {
@@ -182,7 +190,31 @@ export const dataSlice = createSlice({
     },
     setPlayQuizBgSound :(state, action:PayloadAction<boolean>)=>{
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      state.playQuizBgSound = action.payload;
+      const shouldPlay = action.payload;
+      
+      // if(shouldPlay){
+      //   if(!state.playQuizBgSound){
+      //     //create a Howl instance
+      //     const bgMusic = new Howl({
+      //       src: "./bg-sound.mp3",
+      //       loop: true,
+      //       volume: 0.5,
+      //     });
+
+      //     bgMusic.play();
+      //     // Save the Howl instance in the state to access it for stopping later
+      //     state.playQuizBgSoundInstance = bgMusic;
+      //   }
+      // }else{
+      //    //if the music should stop, stop it
+      //    if(state.playQuizBgSound){
+      //       state.playQuizBgSoundInstance.stop();
+      //       state.playQuizBgSoundInstance = null;
+      //    }
+      // }
+      
+      state.playQuizBgSound = shouldPlay;
+      console.log(state.playQuizBgSound);
     }
   },
 });
