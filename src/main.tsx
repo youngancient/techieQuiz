@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";

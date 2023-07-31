@@ -181,6 +181,7 @@ export const dataSlice = createSlice({
       state.timerState = 10;
     },
     setPlayQuizBgSound :(state, action:PayloadAction<boolean>)=>{
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.playQuizBgSound = action.payload;
     }
   },

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { LayoutStyles } from "../styles/layout";
 import { Main } from "./main";
 import { dataSelector } from "../redux/dataSlice";
@@ -7,7 +8,7 @@ import { useWindowSize } from "usehooks-ts";
 // import {Howl, Howler} from 'howler';
 // import { useEffect } from "react";
 
-// using howler omorrrrrr
+// using howler omorrrrrr guy me sef shock 
 
 const Layout = () => {
   const { bgTheme, hasEnded } = useAppSelector(dataSelector);
@@ -31,13 +32,15 @@ const Layout = () => {
   // },[playQuizBgSound])
 
   return (
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     <LayoutStyles color={bgTheme.color} supcolor={bgTheme.supcolor}>
       <div className="one"></div>
       <Main />
       <div className="two"></div>
       {hasEnded && <div className="ewe"><ReactConfetti width={width} height={height} /></div>}
 
-      {/* If i fix this audio issue, then I am done >>> */}
+      {/* If i fix this audio issue, then I am done,
+      I would try my best to fix it :) >>> */}
 
     </LayoutStyles>
   );
