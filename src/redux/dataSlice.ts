@@ -197,7 +197,6 @@ export const dataSlice = createSlice({
     setPlayCorrectAnswerSound: (state, action: PayloadAction<boolean>) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.playCorrectAnswerSound = action.payload;
-      console.log(state.playCorrectAnswerSound);
     },
   },
 });
