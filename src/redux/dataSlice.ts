@@ -34,6 +34,7 @@ interface IDataSlice {
   timerState: number;
   playQuizBgSound: boolean;
   playCorrectAnswerSound: boolean;
+  playWrongAnswerSound: boolean;
 }
 export interface IBgTheme {
   color?: string;
@@ -58,6 +59,7 @@ const initialState: IDataSlice = {
   timerState: 10,
   playQuizBgSound: false,
   playCorrectAnswerSound: false,
+  playWrongAnswerSound: false,
 };
 
 const generateRandom = (min: number, max: number) => {
@@ -174,8 +176,6 @@ export const dataSlice = createSlice({
       state.showQuestionNoList = false;
       state.isQuestionAnswered = false;
       state.hasFinishedQuestions = false;
-      state.playQuizBgSound = false;
-      state.playCorrectAnswerSound = false;
     },
     incrementPlayerScore: (state) => {
       state.playerScore += 1;
@@ -198,6 +198,12 @@ export const dataSlice = createSlice({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.playCorrectAnswerSound = action.payload;
     },
+
+    setPlayWrongAnswerSound: (state, action: PayloadAction<boolean>) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      state.playWrongAnswerSound = action.payload;
+    },
+
   },
 });
 
@@ -221,6 +227,7 @@ export const {
   saveTimer,
   setPlayQuizBgSound,
   setPlayCorrectAnswerSound,
+  setPlayWrongAnswerSound,
 } = dataSlice.actions;
 export const dataSelector = (state: RootState) => state.data;
 export default dataSlice.reducer;
