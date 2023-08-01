@@ -73,6 +73,7 @@ export const Intro = () => {
   const dispatch = useAppDispatch();
   const startQuiz = () => {
     dispatch(setAttemptQuestion());
+    // plays background sound
     dispatch(setPlayQuizBgSound(true));
     dispatch(setHasStarted(true));
   };
@@ -309,7 +310,6 @@ export const Question: FunctionComponent<IQuestion> = ({
       dispatch(setHasEnded(true));
       dispatch(setHasStarted(null));
       dispatch(resetQuizParameters());
-      dispatch(setPlayQuizBgSound(false));
     } else {
       dispatch(setAttemptQuestion());
       dispatch(toggleIsQuestionAnswered());

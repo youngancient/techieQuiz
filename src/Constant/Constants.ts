@@ -194,7 +194,7 @@ export const Questions: IQuestion[] = [
   },
   {
     id: 17,
-    img : "",
+    img : "idan.jpg",
     question: "Identify this user by his twitter handle",
     options: [
       { id: 1, text: "@Olasoft" },
