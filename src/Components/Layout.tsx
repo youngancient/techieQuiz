@@ -59,7 +59,6 @@ const Layout = () => {
 
   const correctSound = new Audio(audioFiles[1]);
   const wrongSound = new Audio(audioFiles[4]);
-  const endSound = new Audio(audioFiles[getRandomNumber(2, 3)]);
 
   const playCorrectSound = () => {
     correctSound.load();
