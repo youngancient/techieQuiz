@@ -48,6 +48,7 @@ Fork the project, make your changes, and submit a pull request!
 
 ## Contributors
   - @Youngancient
+  - @AdedoyinEmmanuel
   
 ## Demo
 
