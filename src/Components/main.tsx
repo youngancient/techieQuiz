@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { FunctionComponent, useEffect, useState } from "react";
 import {
   WelcomeStyles,
@@ -42,13 +46,13 @@ import {
   setHasEnded,
   setHasStarted,
   setPlayQuizBgSound,
+  setPlayCorrectAnswerSound,
+  setPlayWrongAnswerSound,
   setSelectedOption,
   setSelectedQuestionAnswerId,
   toggleIsQuestionAnswered,
   toggleShowQuestionList,
 } from "../redux/dataSlice";
-
-
 
 export const Main = () => {
   const { questionNoDropdownlist } = useAppSelector(dataSelector);
@@ -84,7 +88,7 @@ export const Intro = () => {
       <div className="feel">
         <p>How are you today?</p>
         <div className="smileys">
-          {emojiList.map((ele, index) => (
+          {emojiList.map((ele: any, index: number) => (
             <Emoji
               key={index}
               id={ele.id}
@@ -173,7 +177,7 @@ export const DropDown = () => {
       </div>
       {showQuestionNoList && (
         <div className="list">
-          {questionNoDropdownlist.map((ele, index) => (
+          {questionNoDropdownlist.map((ele: any, index: number) => (
             <DropDownItem
               $isSelected={ele.$isSelected}
               value={ele.value}
@@ -224,7 +228,7 @@ export const FormLayout = () => {
           </div>
           <div className="contents">
             {hasStarted &&
-              questions.map((ele, index) => (
+              questions.map((ele: any, index: number) => (
                 <Question
                   id={ele.id}
                   img={ele.img}
@@ -357,9 +361,13 @@ const getLetter = (num: number) => {
 };
 export const Option: FunctionComponent<IOption> = ({ id, text }) => {
   const dispatch = useAppDispatch();
-  const { selectedOption, isQuestionAnswered, selectedQuestionAnswerId } =
-    useAppSelector(dataSelector);
+  const {
+    selectedOption,
+    isQuestionAnswered,
+    selectedQuestionAnswerId,
+  } = useAppSelector(dataSelector);
   const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
+
   // I need a 0.75s timer which would switch states from the selected question to like mark wrong and mark correctly
   useEffect(() => {
     if (selectedOption) {
@@ -367,6 +375,7 @@ export const Option: FunctionComponent<IOption> = ({ id, text }) => {
         setIsCorrect(selectedQuestionAnswerId === id);
         if (id === selectedOption?.id && selectedQuestionAnswerId === id) {
           dispatch(incrementPlayerScore());
+          dispatch(setPlayCorrectAnswerSound(true));
         }
       }, 750);
     }
@@ -381,6 +390,14 @@ export const Option: FunctionComponent<IOption> = ({ id, text }) => {
       text: text,
     };
     dispatch(setSelectedOption(option));
+
+    setTimeout(() => {
+      if (selectedQuestionAnswerId === id) {
+        //pass
+      } else {
+        dispatch(setPlayWrongAnswerSound(true));
+      }
+    }, 750);
   };
 
   return (

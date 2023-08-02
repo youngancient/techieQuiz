@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   DropdownList,
@@ -27,7 +32,9 @@ interface IDataSlice {
   hasFinishedQuestions: boolean;
   playerScore: number;
   timerState: number;
-  playQuizBgSound : boolean;
+  playQuizBgSound: boolean;
+  playCorrectAnswerSound: boolean;
+  playWrongAnswerSound: boolean;
 }
 export interface IBgTheme {
   color?: string;
@@ -50,7 +57,9 @@ const initialState: IDataSlice = {
   hasFinishedQuestions: false,
   playerScore: 0,
   timerState: 10,
-  playQuizBgSound : false,
+  playQuizBgSound: false,
+  playCorrectAnswerSound: false,
+  playWrongAnswerSound: false,
 };
 
 const generateRandom = (min: number, max: number) => {
@@ -174,15 +183,27 @@ export const dataSlice = createSlice({
     resetPlayerScore: (state) => {
       state.playerScore = 0;
     },
-    saveTimer :(state, action :PayloadAction<number>)=>{
+    saveTimer: (state, action: PayloadAction<number>) => {
       state.timerState = action.payload;
     },
-    resetTimer:(state)=>{
+    resetTimer: (state) => {
       state.timerState = 10;
     },
-    setPlayQuizBgSound :(state, action:PayloadAction<boolean>)=>{
+    setPlayQuizBgSound: (state, action: PayloadAction<boolean>) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       state.playQuizBgSound = action.payload;
-    }
+    },
+
+    setPlayCorrectAnswerSound: (state, action: PayloadAction<boolean>) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      state.playCorrectAnswerSound = action.payload;
+    },
+
+    setPlayWrongAnswerSound: (state, action: PayloadAction<boolean>) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      state.playWrongAnswerSound = action.payload;
+    },
+
   },
 });
 
@@ -204,7 +225,9 @@ export const {
   resetQuizParameters,
   resetTimer,
   saveTimer,
-  setPlayQuizBgSound
+  setPlayQuizBgSound,
+  setPlayCorrectAnswerSound,
+  setPlayWrongAnswerSound,
 } = dataSlice.actions;
 export const dataSelector = (state: RootState) => state.data;
 export default dataSlice.reducer;
