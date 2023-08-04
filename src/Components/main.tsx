@@ -88,7 +88,7 @@ export const Intro = () => {
       <div className="feel">
         <p>How are you today?</p>
         <div className="smileys">
-          {emojiList.map((ele: any, index: number) => (
+          {emojiList.map((ele: IEmoji, index: number) => (
             <Emoji
               key={index}
               id={ele.id}

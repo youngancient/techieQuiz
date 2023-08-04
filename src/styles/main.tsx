@@ -25,7 +25,9 @@ export const MainStyles = styled.main`
     width: 80%;
   }
   @media (max-width: 500px) {
-    font-size: 1.8rem;
+    h1{
+      font-size: 1.9rem;
+    }
     max-width: 348px;
     width: 90%;
   }
