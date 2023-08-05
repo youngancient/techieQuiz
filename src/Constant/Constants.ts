@@ -19,7 +19,7 @@ export const Questions: IQuestion[] = [
     id: 1,
     question: "Which of these founded the most popular tech community for Genzs?",
     options: [
-      { id: 1, text: "Joh Oseni" },
+      { id: 1, text: "John Oseni" },
       { id: 2, text: "Hanif Olayiwola" },
       { id: 3, text: "Eniola Osabiya" },
       { id: 4, text: "Clinton Imaro" },
