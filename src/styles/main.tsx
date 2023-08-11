@@ -34,6 +34,9 @@ export const MainStyles = styled.main`
   @media (max-width: 370px) {
     width: 95%;
   }
+  @media (min-width: 998px) {
+    width: 60%;
+  }
 `;
 
 interface ICodeStyle {
