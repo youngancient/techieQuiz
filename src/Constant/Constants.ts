@@ -292,6 +292,29 @@ export const Questions: IQuestion[] = [
     ],
     answer: 2,
   },
+  {
+    id: 26,
+    question: "Identify her by her code name",
+    img : "/techie.jpg",
+    options: [
+      { id: 1, text: "Kolocodes" },
+      { id: 2, text: "Big Nenz" },
+      { id: 3, text: "TechQueen" },
+      { id: 4, text: "Didicodes" },
+    ],
+    answer: 4,
+  },
+  {
+    id: 27,
+    question: "What's Didicodes real name?",
+    options: [
+      { id: 1, text: "Edidiong Nfong" },
+      { id: 2, text: "Idorenyi Asikpo" },
+      { id: 3, text: "Edidiong Nsisong" },
+      { id: 4, text: "Edidiong Asikpo" },
+    ],
+    answer: 4,
+  },
 ];
 
 export const DropdownList: IDropdownItem[] = [
